@@ -1,0 +1,29 @@
+filebeat.inputs:
+- type: filestream
+  id: default-filestream
+  enabled: true
+  paths:
+    - /usr/share/filebeat/ingest_data/log-structura.json
+
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
+
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+
+setup.kibana:
+  host: ${KIBANA_HOSTS}
+  username: ${ELASTIC_USER}
+  password: ${ELASTIC_PASSWORD}
+
+output.elasticsearch:
+  hosts: ${ELASTIC_HOSTS}
+  username: ${ELASTIC_USER}
+  password: ${ELASTIC_PASSWORD}
+  ssl.enabled: true
+  ssl.certificate_authorities: "certs/ca/ca.crt"

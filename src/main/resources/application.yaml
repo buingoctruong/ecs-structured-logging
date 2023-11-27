@@ -1,0 +1,22 @@
+server:
+  compression:
+    enabled: true
+  # Default port
+  port: 8080
+  # Enable graceful shutdown - Server will wait for active request to finish
+  shutdown: graceful
+  tomcat:
+    mbeanregistry:
+      enabled: true
+# Spring Configuration
+spring:
+  application:
+    name: log-structura
+  profiles:
+    active: local
+# Swagger
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
